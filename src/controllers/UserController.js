@@ -32,7 +32,7 @@ async function createUser(req, res) {
     await user.save();
     res.status(201).json(user);
   } catch (error) {
-    res.status(400).json({ error: 'Error al crear el usuario.' });
+    res.status(400).json({ error: 'Error al crear el usuario.' + error});
   }
 }
 
@@ -80,7 +80,7 @@ async function loginUser(req, res) {
       return res.status(401).json({ error: 'Credenciales incorrectas.' });
     }
 
-    res.json({ message: 'Inicio de sesión exitoso.',  rol: user.rol });
+    res.json({ message: 'Inicio de sesión exitoso.',  rol: user.rol, name: user.nombre });
   } catch (error) {
     res.status(500).json({ error: 'Error al iniciar sesión.' });
   }
